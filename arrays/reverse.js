@@ -11,7 +11,7 @@ const reverseString = str => {
     return reversedString;
 }
 
-const reverseStringSecond = str => {
+const reverseStringUsingInbuiltMethod = str => {
     if(typeof str !== "string")
     {
         throw Error("Invalid Input")
@@ -20,4 +20,29 @@ const reverseStringSecond = str => {
 }
 
 console.log(reverseString("Hey, there. What a nice day!"))
-console.log(reverseStringSecond("Hey, there. What a nice day!"))
+console.log(reverseStringUsingInbuiltMethod("Hey, there. What a nice day!"))
+
+//Reverse Number
+const reverseNumber = num => {
+    if(!num)
+        throw Error("Invalid")
+    const reversedNumArray = []
+    while(num>0)
+        {
+            const digit = num%10;
+            reversedNumArray.push(digit)
+            num=Math.round(num/10)
+        }
+    return Number(reversedNumArray.join(""))
+}
+
+const reverseNumberUsingInbuiltMethod = num => {
+    if(!num)
+        throw Error("Invalid")
+    const reversedInput = [...num.toString()].reverse().join("")
+    return Number(reversedInput)
+}
+
+console.log(reverseArray(123))
+console.log(reverseUsingInbuiltMethods(123))
+
