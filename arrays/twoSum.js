@@ -40,7 +40,7 @@ var twoSumApproach2 = function(nums, target) //O(n**2)
     }
 }
 
-// Approach n :- Hashmaps
+// Approach n :- Hashmaps (O(n))
 var twoSum = function(nums, target) {
     const map = new Map();
     for (let i = 0; i < nums.length; i++) //O(n)
@@ -49,7 +49,6 @@ var twoSum = function(nums, target) {
         if (map.has(complement) && map.get(complement) !== i) {
             return ([i, map.get(complement)])
         } else {
-
             map.set(nums[i], i)
         }
     }
