@@ -1,35 +1,44 @@
 Array.prototype.mySlice = function (startIndex, endIndex) {
-  const slicedArray = [];
-  if (endIndex < startIndex) {
-    return []
-  }
-  if (startIndex > this.length) {
-    return []
-  }
-  if(startIndex<0)
-  {
-      startIndex=this.length+startIndex;
-      endIndex=this.length-1;
-  }
-  if (startIndex === endIndex) {
-    return [this[startIndex]];
-  }
-  if (!endIndex) {
-    endIndex = this.length - 1;
-  }
-  for (let i = startIndex; i <= endIndex; i++) {
-    if(this[i]===undefined)
-    {
-        continue;
+    const slicedArray = [];
+  
+    //When both indices are positive, end index cannot be greater than start index.
+    if (endIndex < startIndex) {
+      return [];
     }
-    slicedArray.push(this[i]);
-  }
-  return slicedArray;
-};
-
-console.log([1, 2, 3, 4, 5].mySlice(-1));
-console.log([1, 2, 3, 4, 5].mySlice(-7));
-console.log([1,2,3,4,5].slice(3))
-console.log([1,2,3,4,5].mySlice(8,3))
-console.log([1,2,3,4,5].mySlice(1,3))
-
+  
+    //Start index cannot be greater than the array length
+    if (startIndex > this.length) {
+      return [];
+    }
+  
+    //offsetting if there is a negative index.
+    if (startIndex < 0) {
+      startIndex = this.length + startIndex;
+      if (startIndex < 0) {
+        //If on offsetting, index is negative, make it 0 by default.
+        startIndex = 0;
+      }
+      endIndex = this.length;
+    }
+  
+    if (startIndex === endIndex) {
+      return [this[startIndex]];
+    }
+  
+    //If no end index is provided, it will be the end of the array by default.
+    if (!endIndex) {
+      endIndex = this.length;
+    }
+  
+    for (let i = startIndex; i < endIndex; i++) {
+      slicedArray.push(this[i]);
+    }
+    return slicedArray;
+  };
+  
+  console.log([1, 2, 3, 4, 5].mySlice(-1));
+  console.log([1, 2, 3, 4, 5, undefined].mySlice(-7));
+  console.log([1, 2, 3, 4, 5].slice(3));
+  console.log([1, 2, 3, 4, 5].mySlice(8, 3));
+  console.log([1, 2, 3, 4, 5].mySlice(1, 3));
+  
