@@ -17,9 +17,11 @@ class myArray {
     return this.data[index];
   }
 
-  pushItem(item) {
-    this.data[this.length] = item;
-    this.length++;
+  pushItem(...items) {
+    for (let item of items) {
+      this.data[this.length] = item;
+      this.length++;
+    }
     return this.length;
   }
   popItem() {
@@ -48,6 +50,7 @@ console.log(arr.printAll());
 arr.pushItem(2);
 arr.pushItem(5);
 arr.pushItem(10);
+arr.pushItem(7, 8, 9, 10);
 arr.popItem();
 arr.pushItem("hello");
 arr.deleteItemAt(0);

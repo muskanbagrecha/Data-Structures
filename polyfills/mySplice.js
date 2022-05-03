@@ -1,21 +1,27 @@
-// Array.prototype.mySplice = function(startIndex, numElementToReplace, replaceElements){
-//     const splicedArray = [];
-//     const elementsToSplice = this.mySlice(startIndex, startIndex + numElementToReplace);
-//     splicedArray.push(...elementsToSplice);
-//     if(replaceElements){
-//         splicedArray.push(...replaceElements);
-//     }
-//     const elementsToSpliceLength = elementsToSplice.length;
-//     for(let i = startIndex + numElementToReplace; i < this.length; i++){
-//         this[i - elementsToSpliceLength] = this[i];
-//     }
-//     this.length = this.length - elementsToSpliceLength;
-//     return splicedArray;   
-// }
+Array.prototype.mySplice = function (
+  startIndex,
+  numItemsToRemove,
+  ...replaceableItems
+) {
+  let originalArray = this;
+  let itemsBeforeSplice = [];
+  let splicedItems = [];
+  let itemsAfterSplice = [];
+  let spliceEndIndex = startIndex + numItemsToRemove;
 
-Array.prototype.mySplice = function(startIndex, numOfElementsToReplace, replaceableElements){
-    if(startIndex>this.length){
-        return [];
+  if (startIndex > originalArray.length) {
+    return [];
+  }
+
+  for (let i = 0; i < originalArray.length; i++) {
+    if (i < startIndex) {
+      itemsBeforeSplice.push(originalArray[i]);
+    } else if (i >= startIndex && i < spliceEndIndex) {
+      splicedItems.push(originalArray[i]);
+    } else if (i > spliceEndIndex) {
+      itemsAfterSplice.push(originalArray[i]);
     }
-    
-}
+  }
+
+  return splicedItems;
+};
