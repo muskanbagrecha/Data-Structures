@@ -13,7 +13,6 @@ const objEqualityChecker = (obj1, obj2) => {
       return false;
     }
     if (typeof obj1[prop] === "object") {
-      console.log(obj1[prop], obj2[prop]);
       if (!objEqualityChecker(obj1[prop], obj2[prop])) {
         return false;
       }
@@ -56,10 +55,32 @@ const obj5 = {
     age: NaN
 }
 
+const obj6 = {
+    prop1 : {
+        arr1: [1,2,3]
+    }
+}
+
+const obj7 = {
+    prop1 : {
+        arr1: [1,2,3]
+    }
+}
+
+const obj8 = {
+    prop1 : {
+        arr1: [1,2,5]
+    }
+}
+
 console.log(objEqualityChecker(obj1, obj2));
 
 console.log(objEqualityChecker(obj1, obj3));
 
 console.log(objEqualityChecker(obj4, obj5))
+
+console.log(objEqualityChecker(obj6, obj7))
+
+console.log(objEqualityChecker(obj6, obj8))
 
 //limitations: NaN === NaN gives false.
